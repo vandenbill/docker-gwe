@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq
+    container_name: rabbitmq-dev
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - type: volume
+        read_only: false
+        source: rabbitmq-volume
+        target: "/var/lib/rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_USER: root
+      RABBITMQ_DEFAULT_PASS: root
+
+volumes:
+  rabbitmq-volume:
+    name: rabbitmq-volume

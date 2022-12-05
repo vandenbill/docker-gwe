@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  jenkins-dev:
+    image: jenkins/jenkins
+    container_name: jenkins-dev
+    ports:
+      - 8080:8080
+    volumes:
+      - type: volume
+        source: jenkins-volume
+        target: "/var/jenkins_home"
+        read_only: false
+
+volumes:
+  jenkins-volume:
+    name: jenkins-volume

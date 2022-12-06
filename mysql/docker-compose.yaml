@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  mysql-dev:
+    image: mysql
+    container_name: mysql-dev
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - type: volume
+        source: mysql-volume
+        target: "/var/lib/mysql"
+        read_only: false
+
+volumes:
+  mysql-volume:
+    name: mysql-volume

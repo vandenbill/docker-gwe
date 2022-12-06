@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.17.7
+    container_name: elasticsearch1
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=multi-node
+    volumes:
+      - es-vol1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - es-network
+  elasticsearch2:
+    image: elasticsearch:7.17.7
+    container_name: elasticsearch2
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=multi-node
+    volumes:
+      - es-vol2:/usr/share/elasticsearch/data
+    networks:
+      - es-network
+  elasticsearch3:
+    image: elasticsearch:7.17.7
+    container_name: elasticsearch3
+    environment:
+      - cluster.name=docker-cluster
+      - discovery.type=multi-node
+    volumes:
+      - es-vol3:/usr/share/elasticsearch/data
+    networks:
+      - es-network
+
+volumes:
+  es-vol1:
+    name: es-vol1
+  es-vol2:
+    name: es-vol2
+  es-vol3:
+    name: es-vol3
+
+networks:
+  es-network:
+    name: es-network
